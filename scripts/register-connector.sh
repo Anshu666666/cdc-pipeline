@@ -1,0 +1,17 @@
+#!/bin/bash
+curl -X POST http://localhost:8083/connectors \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "ecomm-connector",
+    "config": {
+      "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+      "database.hostname": "postgres",
+      "database.port": "5432",
+      "database.user": "ecomm",
+      "database.password": "password",
+      "database.dbname": "ecomm",
+      "topic.prefix": "dbserver1",
+      "plugin.name": "pgoutput",
+      "table.include.list": "public.orders"
+    }
+  }'

@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="560" fill="#0b0f19" rx="12" />
+  
+  <!-- Title Header -->
+  <text x="550" y="42" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="bold" text-anchor="middle">
+    High-Throughput CDC Pipeline — Production Telemetry &amp; Architecture
+  </text>
+  <text x="550" y="66" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="13" text-anchor="middle">
+    Sustained 1,000 req/sec Soak Test • Zero-Loss Ingestion • Real-Time Dual Sinks
+  </text>
+
+  <!-- Stage 1: Client & Load Generator -->
+  <g transform="translate(40, 110)" filter="url(#shadow)">
+    <rect width="180" height="150" rx="10" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="90" y="32" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Load Generator</text>
+    <text x="90" y="52" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="11" text-anchor="middle">Multi-threaded (10-30 Workers)</text>
+    <line x1="20" y1="65" x2="160" y2="65" stroke="#334155" />
+    <text x="25" y="88" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Target RPS: <tspan fill="#38bdf8" font-weight="bold">1,000</tspan></text>
+    <text x="25" y="108" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Method: <tspan fill="#fbbf24">POST / PATCH</tspan></text>
+    <text x="25" y="128" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">HTTP 201/200: <tspan fill="#34d399" font-weight="bold">100%</tspan></text>
+  </g>
+
+  <!-- Flow Arrow 1 -->
+  <path d="M 220 185 L 265 185" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6,4" />
+  <polygon points="270,185 262,180 262,190" fill="#38bdf8" />
+  <text x="245" y="172" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">P95: 93ms</text>
+
+  <!-- Stage 2: PostgreSQL WAL -->
+  <g transform="translate(275, 110)" filter="url(#shadow)">
+    <rect width="180" height="150" rx="10" fill="url(#cardGrad)" stroke="#0284c7" stroke-width="1.5" />
+    <text x="90" y="32" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" text-anchor="middle">PostgreSQL 15</text>
+    <text x="90" y="52" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="11" text-anchor="middle">Primary ACID Store</text>
+    <line x1="20" y1="65" x2="160" y2="65" stroke="#334155" />
+    <text x="25" y="88" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">WAL: <tspan fill="#34d399">logical</tspan></text>
+    <text x="25" y="108" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Isolation: <tspan fill="#f8fafc">Read Committed</tspan></text>
+    <text x="25" y="128" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Commit: <tspan fill="#38bdf8">&lt; 35ms avg</tspan></text>
+  </g>
+
+  <!-- Flow Arrow 2 (CDC capture) -->
+  <path d="M 455 185 L 500 185" stroke="#fbbf24" stroke-width="2.5" />
+  <polygon points="505,185 497,180 497,190" fill="#fbbf24" />
+  <text x="480" y="172" fill="#fbbf24" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Debezium</text>
+
+  <!-- Stage 3: Apache Kafka -->
+  <g transform="translate(510, 95)" filter="url(#shadow)">
+    <rect width="210" height="180" rx="10" fill="url(#cardGrad)" stroke="#fbbf24" stroke-width="1.5" />
+    <text x="105" y="30" fill="#fbbf24" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="bold" text-anchor="middle">Apache Kafka</text>
+    <text x="105" y="48" fill="#94a3b8" font-family="'Segoe UI', sans-serif" font-size="11" text-anchor="middle">Event Streaming Spine</text>
+    <line x1="20" y1="60" x2="190" y2="60" stroke="#334155" />
+    <text x="25" y="82" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Topic: <tspan fill="#fbbf24">orders.events</tspan></text>
+    <text x="25" y="102" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Serialization: <tspan fill="#38bdf8">Avro + Schema Reg</tspan></text>
+    <text x="25" y="122" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Logged Events: <tspan fill="#34d399" font-weight="bold">&gt; 216,000</tspan></text>
+    <text x="25" y="142" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">DLQ Topic: <tspan fill="#34d399">0 unhandled</tspan></text>
+    <text x="25" y="162" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">At-Least-Once: <tspan fill="#a855f7">Guaranteed</tspan></text>
+  </g>
+
+  <!-- Branches to Consumers -->
+  <path d="M 720 150 L 800 120" stroke="#34d399" stroke-width="2.5" />
+  <polygon points="805,118 795,115 798,125" fill="#34d399" />
+
+  <path d="M 720 185 L 800 240" stroke="#a855f7" stroke-width="2.5" />
+  <polygon points="805,243 798,235 795,245" fill="#a855f7" />
+
+  <path d="M 720 220 L 800 360" stroke="#f43f5e" stroke-width="2.5" />
+  <polygon points="805,364 797,356 795,366" fill="#f43f5e" />
+
+  <!-- Sink 1: Redis C++ Consumer -->
+  <g transform="translate(810, 70)" filter="url(#shadow)">
+    <rect width="250" height="110" rx="10" fill="url(#cardGrad)" stroke="#34d399" stroke-width="1.5" />
+    <text x="125" y="28" fill="#34d399" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">RedisUpdater (C++)</text>
+    <text x="20" y="52" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Consumer Lag: <tspan fill="#34d399" font-weight="bold">0 msgs (Real-Time)</tspan></text>
+    <text x="20" y="72" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Atomic LSN Upsert: <tspan fill="#38bdf8">Lua Script (EVAL)</tspan></text>
+    <text x="20" y="92" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Sink Latency (P99): <tspan fill="#34d399" font-weight="bold">&lt; 1.5 ms</tspan></text>
+  </g>
+
+  <!-- Sink 2: Elasticsearch C++ Consumer -->
+  <g transform="translate(810, 195)" filter="url(#shadow)">
+    <rect width="250" height="110" rx="10" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="1.5" />
+    <text x="125" y="28" fill="#a855f7" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">ESIndexer (C++)</text>
+    <text x="20" y="52" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Purpose: <tspan fill="#f8fafc">Full-Text Analytics Search</tspan></text>
+    <text x="20" y="72" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Batching &amp; Retries: <tspan fill="#a855f7">Exponential Backoff</tspan></text>
+    <text x="20" y="92" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Sink Latency (P50): <tspan fill="#fbbf24">11.8 ms</tspan></text>
+  </g>
+
+  <!-- Sink 3: Notifier C++ Consumer -->
+  <g transform="translate(810, 320)" filter="url(#shadow)">
+    <rect width="250" height="110" rx="10" fill="url(#cardGrad)" stroke="#f43f5e" stroke-width="1.5" />
+    <text x="125" y="28" fill="#f43f5e" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Notifier Alert Engine (C++)</text>
+    <text x="20" y="52" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Consumer Lag: <tspan fill="#34d399" font-weight="bold">0 msgs</tspan></text>
+    <text x="20" y="72" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Deduplication: <tspan fill="#38bdf8">Redis SET NX (24h)</tspan></text>
+    <text x="20" y="92" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="12">Processing Time: <tspan fill="#34d399">&lt; 0.5 ms</tspan></text>
+  </g>
+
+  <!-- Lower Panel: Observability & Resilience Architecture -->
+  <g transform="translate(40, 445)" filter="url(#shadow)">
+    <rect width="1020" height="90" rx="8" fill="#131d2e" stroke="#334155" />
+    <text x="30" y="28" fill="#38bdf8" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="bold">Observability &amp; Self-Healing Infrastructure</text>
+    
+    <circle cx="45" cy="55" r="5" fill="#34d399" />
+    <text x="60" y="59" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11">Logstash Ingestion: JSON TCP stream flattener &amp; index router</text>
+    
+    <circle cx="450" cy="55" r="5" fill="#38bdf8" />
+    <text x="465" y="59" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11">Dead Letter Queue: Non-blocking poisonous payload isolation</text>
+    
+    <circle cx="820" cy="55" r="5" fill="#a855f7" />
+    <text x="835" y="59" fill="#f8fafc" font-family="'Segoe UI', sans-serif" font-size="11">Kibana Telemetry: Live percentile tracking</text>
+  </g>
+</svg>
