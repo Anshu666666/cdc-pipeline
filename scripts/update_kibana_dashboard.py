@@ -91,11 +91,13 @@ Click below to explore live event streams directly inside Kibana Discover:
             "title": "CDC Pipeline — Distributed Systems Observability & Telemetry",
             "description": "Production observability dashboard for CDC pipeline soak test at 1,000 req/sec",
             "hits": 0,
-            "panelsJSON": json.dumps(panels),
-            "optionsJSON": json.dumps({"useMargins": True, "hidePanelTitles": False}),
             "kibanaSavedObjectMeta": {
-                "searchSourceJSON": json.dumps({"query": {"query": "", "language": "kuery"}, "filter": []})
+                "searchSourceJSON": json.dumps({
+                    "query": {"query": "", "language": "kuery"},
+                    "filter": []
+                })
             },
+            "panelsJSON": json.dumps(panels),
             "timeRestore": True,
             "timeFrom": "now-30m",
             "timeTo": "now"
