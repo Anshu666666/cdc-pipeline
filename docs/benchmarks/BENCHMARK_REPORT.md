@@ -1,4 +1,4 @@
-# High-Throughput CDC Pipeline — Benchmark & Performance Report
+# TransactFlow — High-Throughput Distributed CDC Benchmark & Performance Report
 
 > **Project Classification**: Distributed Systems, Change Data Capture (CDC), High-Throughput Event Streaming  
 > **Target Scale**: 1,000 req/sec Sustained Ingestion • Zero Data Loss • Sub-Millisecond Cache Invalidation  

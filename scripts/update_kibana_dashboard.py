@@ -7,7 +7,7 @@ def update_dashboard():
     dashboard_id = "cdc-telemetry-dashboard"
     url = f"{KIBANA_URL}/api/saved_objects/dashboard/{dashboard_id}?overwrite=true"
     
-    header_text = """# 🚀 High-Throughput CDC Pipeline — Soak Test & Telemetry Dashboard
+    header_text = """# 🚀 TransactFlow — Distributed Real-Time CDC & Telemetry Dashboard
 
 **Real-Time Distributed System Telemetry** | PostgreSQL WAL ➔ Debezium (Avro) ➔ Apache Kafka ➔ Modern C++ Consumers ➔ Dual Storage (Redis + Elasticsearch)
 
@@ -88,8 +88,8 @@ Click below to explore live event streams directly inside Kibana Discover:
 
     payload = {
         "attributes": {
-            "title": "CDC Pipeline — Distributed Systems Observability & Telemetry",
-            "description": "Production observability dashboard for CDC pipeline soak test at 1,000 req/sec",
+            "title": "TransactFlow — Distributed Systems Observability & Telemetry",
+            "description": "Production observability dashboard for TransactFlow CDC soak test at 1,000 req/sec",
             "hits": 0,
             "kibanaSavedObjectMeta": {
                 "searchSourceJSON": json.dumps({

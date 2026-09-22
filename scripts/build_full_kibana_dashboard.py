@@ -28,7 +28,7 @@ def main():
     # 0. System Markdown Header / Context Banner
     # ==========================================
     banner_markdown = (
-        "### 🚀 High-Throughput CDC Pipeline — Distributed Systems Observability & Telemetry\n"
+        "### 🚀 TransactFlow — Distributed Systems Observability & Telemetry\n"
         "**Real-Time Data Flow**: Client REST API ➔ PostgreSQL 15 (WAL Logical Replication) ➔ Debezium 2.4 (Avro + Schema Registry) ➔ Apache Kafka ➔ Modern C++ Consumer Fleet ➔ Dual Storage (Redis Hot Cache + Elasticsearch Full-Text Index)\n\n"
         "**Soak Test Target**: 1,000 req/sec sustained ingestion • Zero data loss • Monotonic LSN deduplication • Sub-millisecond cache sync"
     )
@@ -978,8 +978,8 @@ def main():
     create_saved_object(
         "dashboard", "cdc-telemetry-dashboard",
         {
-            "title": "CDC Pipeline — Distributed Systems Observability & Telemetry",
-            "description": "Enterprise production telemetry dashboard with full benchmark figures for 1,000 req/sec CDC pipeline soak test",
+            "title": "TransactFlow — Distributed Systems Observability & Telemetry",
+            "description": "Enterprise production telemetry dashboard with full benchmark figures for 1,000 req/sec TransactFlow CDC soak test",
             "hits": 0,
             "kibanaSavedObjectMeta": {
                 "searchSourceJSON": json.dumps({"query": {"query": "", "language": "kuery"}, "filter": []})

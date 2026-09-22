@@ -1,4 +1,4 @@
-# 🚀 High-Throughput Distributed CDC Pipeline
+# 🚀 TransactFlow — Distributed Real-Time CDC & Order Streaming Pipeline
 
 [![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
@@ -9,7 +9,7 @@
 [![Docker](https://img.shields.io/badge/Docker_Compose-24.0-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-> **Enterprise-grade Change Data Capture (CDC) streaming engine**: Ingests **1,000+ req/sec** into PostgreSQL, streams WAL updates through Kafka with Avro schema governance, and replicates in real-time across dual specialized sinks (**Redis** for sub-millisecond in-memory cache; **Elasticsearch** for full-text search) with **0.000% data loss** and **atomic Lua-guaranteed idempotency**.
+> **TransactFlow**: An enterprise-grade Change Data Capture (CDC) and transactional event streaming engine. Ingests **1,000+ req/sec** into PostgreSQL, streams WAL updates through Kafka with Avro schema governance, and replicates in real-time across dual specialized sinks (**Redis** for sub-millisecond in-memory cache; **Elasticsearch** for full-text search) with **0.000% data loss** and **atomic Lua-guaranteed idempotency**.
 
 ---
 
@@ -139,10 +139,10 @@ All 10 services (Postgres, Kafka, Zookeeper, Schema Registry, Debezium, Redis, E
 ### 2. Verify Consumer Offsets & Key Counts
 ```bash
 # Check Redis cached key count:
-docker exec cdc-pipeline-redis-1 redis-cli DBSIZE
+docker compose exec redis redis-cli DBSIZE
 
 # Inspect Kafka consumer group lag:
-docker exec cdc-pipeline-kafka-1 kafka-consumer-groups \
+docker compose exec kafka kafka-consumer-groups \
   --bootstrap-server localhost:9092 --describe --all-groups
 ```
 
@@ -163,7 +163,7 @@ Output charts are saved directly into `docs/benchmarks/`.
 ## 📁 7. Project Structure
 
 ```
-cdc-pipeline/
+TransactFlow/
 ├── api/                           # C++ Ingestion REST API & Load Generator
 │   ├── CMakeLists.txt
 │   ├── Dockerfile
