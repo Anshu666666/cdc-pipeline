@@ -7,7 +7,7 @@ def update_dashboard():
     dashboard_id = "cdc-telemetry-dashboard"
     url = f"{KIBANA_URL}/api/saved_objects/dashboard/{dashboard_id}?overwrite=true"
     
-    header_text = """# 🚀 TransactFlow — Distributed Real-Time CDC & Telemetry Dashboard
+    header_text = """# TransactFlow — Distributed Real-Time CDC & Telemetry Dashboard
 
 **Real-Time Distributed System Telemetry** | PostgreSQL WAL ➔ Debezium (Avro) ➔ Apache Kafka ➔ Modern C++ Consumers ➔ Dual Storage (Redis + Elasticsearch)
 

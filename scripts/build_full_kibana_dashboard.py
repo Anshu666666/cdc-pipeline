@@ -27,17 +27,13 @@ def main():
     # ==========================================
     # 0. System Markdown Header / Context Banner
     # ==========================================
-    banner_markdown = (
-        "### 🚀 TransactFlow — Distributed Systems Observability & Telemetry\n"
-        "**Real-Time Data Flow**: Client REST API ➔ PostgreSQL 15 (WAL Logical Replication) ➔ Debezium 2.4 (Avro + Schema Registry) ➔ Apache Kafka ➔ Modern C++ Consumer Fleet ➔ Dual Storage (Redis Hot Cache + Elasticsearch Full-Text Index)\n\n"
-        "**Soak Test Target**: 1,000 req/sec sustained ingestion • Zero data loss • Monotonic LSN deduplication • Sub-millisecond cache sync"
-    )
+    banner_markdown = "# TransactFlow — Distributed Systems Observability & Telemetry"
     create_saved_object(
         "visualization", "vis-header-banner",
         {
-            "title": "Pipeline Telemetry Overview Banner",
+            "title": "",
             "visState": json.dumps({
-                "title": "Pipeline Telemetry Overview Banner",
+                "title": "",
                 "type": "markdown",
                 "params": {"markdown": banner_markdown}
             }),
@@ -910,7 +906,7 @@ def main():
     # ==========================================
     panels = [
         # Banner Header (y: 0, h: 4, w: 48)
-        {"version": "8.10.2", "type": "visualization", "gridData": {"x": 0, "y": 0, "w": 48, "h": 4, "i": "1"}, "panelIndex": "1", "panelRefName": "panel_banner"},
+        {"version": "8.10.2", "type": "visualization", "gridData": {"x": 0, "y": 0, "w": 48, "h": 4, "i": "1"}, "panelIndex": "1", "panelRefName": "panel_banner", "embeddableConfig": {"hidePanelTitles": True}},
         
         # Row 1: Executive KPI Stat Cards (y: 4, h: 6, w: 12 each -> 4 cards = 48)
         {"version": "8.10.2", "type": "visualization", "gridData": {"x": 0, "y": 4, "w": 12, "h": 6, "i": "2"}, "panelIndex": "2", "panelRefName": "panel_total_orders"},
